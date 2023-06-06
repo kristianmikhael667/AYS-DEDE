@@ -65,8 +65,10 @@ $routes->get('tasks-list', 'Home::show_tasks_list');
 $routes->get('tasks-kanban', 'Home::show_tasks_kanban');
 $routes->get('tasks-create', 'Home::show_tasks_create');
 
-// Pages
-$routes->get('pages-login', 'Home::page_login');
+// Login
+$routes->get('pages-login', 'Auth::page_login');
+$routes->post('login', 'Auth::processLogin');
+
 $routes->get('pages-register', 'Home::show_pages_register');
 $routes->get('pages-recoverpw', 'Home::show_pages_recoverpw');
 $routes->get('pages-lock-screen', 'Home::show_pages_lock_screen');
