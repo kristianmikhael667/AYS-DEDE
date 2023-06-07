@@ -45,4 +45,15 @@ class Auth extends BaseController
             return redirect()->back()->with('error', 'Invalid email or password');
         }
     }
+
+    public function logout()
+    {
+        $session = Services::session();
+        $session->remove('accessToken');
+        $session->remove('fullname');
+        $session->remove('email');
+        $session->remove('username');
+        $session->remove('uuid');
+        return redirect()->to(base_url('pages-login'));
+    }
 }

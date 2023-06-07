@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class PostapiModel extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'users';
+	protected $table                = 'postapi';
 	protected $primaryKey           = 'id';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
 	protected $returnType           = 'array';
-	protected $useSoftDelete        = false;
+	protected $useSoftDelete        = true;
 	protected $protectFields        = true;
 	protected $allowedFields        = [];
 
@@ -40,13 +40,23 @@ class UserModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	public function authentication($email, $password){
-		$user = $this->where('username', $email)
-                     ->first();
-
-        if ($user && password_verify($password, $user['password'])) {
-            return $user;
-        }
-        return false;
+	public function listall(){
+		$builder = $this->select('*')->orderBy('id', 'DESC');
+		$postall =  $builder->get();
+		if ($postall->getResult()) {
+			return $postall->getResult();
+		} else {
+			return 0;
+		}
 	}
+
+	public function transform($post)
+    {
+        return [
+			'uuid' => $post->uuid,
+			'nama_bencana' => $post->nama_bencana,
+			'jam_bencana' => $post->jam_bencana,
+			'lokasi' => $post->lokasi,
+		];
+    }
 }

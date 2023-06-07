@@ -1,0 +1,17 @@
+1. membuat model
+php spark make:model PostApiModel   
+
+2. membuat migrations
+php spark make:migration create_post_api_table 
+
+3. send migration to db
+php spark migrate
+php spark migrate:refresh 
+php spark migrate --all 
+php spark migrate:latest 2023-06-07-080959_CreatePostApiTable.php
+
+4. membuat seeder
+php spark make:seeder user --suffix  
+
+5. send seeder to db
+php spark db:seed UserSeeder   

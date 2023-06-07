@@ -871,7 +871,7 @@ body[data-layout="horizontal"] .page-title-box {
   padding-bottom: 0;
 }
 body[data-layout="horizontal"] #page-topbar {
-  background-color: #fff;
+  background-color: #2A3042;
 }
 .topnav {
   padding: 0 calc(24px / 2);

@@ -33,13 +33,16 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-// Index 
+// View API 
 $routes->get('/', 'Home::index');
 
-// Language
-$routes->get('/lang/{locale}', 'Language::index');
+// Create API
+$routes->get('/create-post-api', 'PostApi::page_create_api');
+$routes->post('/postapi', 'PostApi::processCreate');
 
-$routes->get('index-2', 'Home::show_index_2');
+// API List Data
+$routes->get('/api/list-post-api', 'PostApi::list_post_api');
+
 
 // Vertical Layout Pages Routes
 $routes->get('layouts-compact-sidebar', 'Home::show_layouts_compact_sidebar');
@@ -68,6 +71,7 @@ $routes->get('tasks-create', 'Home::show_tasks_create');
 // Login
 $routes->get('pages-login', 'Auth::page_login');
 $routes->post('login', 'Auth::processLogin');
+$routes->get('logout', 'Auth::logout');
 
 $routes->get('pages-register', 'Home::show_pages_register');
 $routes->get('pages-recoverpw', 'Home::show_pages_recoverpw');

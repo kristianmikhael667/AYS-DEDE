@@ -22,30 +22,32 @@
                         </div>
                         <div class="card-body pt-5">
                             <div class="p-2">
-                            <form action="<?= base_url(); ?>/login" method="POST">
+                                <form class="form-horizontal" action="<?= base_url(); ?>/login" method="POST">
+                                        <?php if (session()->has('error')) : ?>
+                                            <div class="alert alert-danger">
+                                                <?= session()->getFlashdata('error') ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="username">Username</label>
+                                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
+                                        </div>
 
-                                <form class="form-horizontal" action="<?= base_url(); ?>/" method="POST">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="userpassword">Password</label>
+                                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+                                        </div>
 
-                                    <div class="mb-3">
-                                        <label class="form-label" for="username">Username</label>
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
-                                    </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="customControlInline">
+                                            <label class="form-check-label" for="customControlInline">Remember
+                                                me</label>
+                                        </div>
 
-                                    <div class="mb-3">
-                                        <label class="form-label" for="userpassword">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="customControlInline">
-                                        <label class="form-check-label" for="customControlInline">Remember
-                                            me</label>
-                                    </div>
-
-                                    <div class="mt-3">
-                                        <button class="btn btn-primary w-100 waves-effect waves-light text-dark font-size-20" type="submit">Login</button>
-                                    </div>
-                                </form>
+                                        <div class="mt-3">
+                                            <button class="btn btn-primary w-100 waves-effect waves-light text-dark font-size-20" type="submit">Login</button>
+                                        </div>
+                                    </form>
                             </div>
 
                         </div>

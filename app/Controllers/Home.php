@@ -2,15 +2,27 @@
 
 namespace App\Controllers;
 
+use App\Models\PostapiModel;
+use CodeIgniter\HTTP\URI;
+
 class Home extends BaseController
 {
 	public function index()
 	{
+		$currentURI = current_url();
+		$uri = new URI($currentURI);
+		$path = $uri->getPath();
+
+		// Get All data
+        $model = new PostapiModel();
+        $builder = $model->listall();
+
 		$data = [
-			'title_meta' => view('partials/title-meta', ['title' => 'Dashboard']),
-			'page_title' => view('partials/page-title', ['title' => 'Dashboard', 'li_1' => 'Welcome to Qovex Dashboard'])
+			'title_meta' => view('partials/title-meta', ['title' => 'Dashboard', 'routes' => $path]),
+			'page_title' => view('partials/page-title', ['title' => 'View API', 'li_1' => 'Layouts', 'li_2' => 'Welcome to AYS']),
+			'dataall' => $builder
 		];
-		return view('index', $data);
+		return view('page-home/homes', $data);
 	}
 
 	public function show_index_2()
